@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "catmc",
+  "version": "${version}",
+  "name": "CatMC",
+  "description": "Just some random mod",
+  "authors": [
+    "ConfuzzedCat"
+  ],
+  "contact": {
+    "website": "https://github.com/confuzzedcat"
+  },
+  "license": "MIT",
+  "icon": "assets/catmc/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.github.confuzzedcat.catmc.client.CatmcClient"
+    ],
+    "main": [
+      "com.github.confuzzedcat.catmc.Catmc"
+    ]
+  },
+  "mixins": [
+    "catmc.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": "1.19"
+  }
+}
