@@ -18,26 +18,35 @@ import org.slf4j.LoggerFactory;
 public class CatmcClient implements ClientModInitializer {
     public static final Logger Log = LoggerFactory.getLogger("CatMC");
     public static final MinecraftClient CLIENT = MinecraftClient.getInstance();
-
+    public static int FlyDetectionBypass = 0;
+    public static Boolean AutoFish = false;
+    public static Boolean Fly = false;
+    public static Screen LastScene;
     @Override
     public void onInitializeClient() {
-        Log.info("This is a test log.");
+        Log.info("CatMC started.");
         ScreenEvents.AFTER_INIT.register(
                 (client, screen, scaledWidth, scaledHeight) -> {
-                    if(screen instanceof TitleScreen){
-                        Screens.getButtons(screen).add(new ButtonWidget((int)Math.ceil(scaledWidth/10/2), (int)Math.ceil(scaledHeight/10/2), 50, 20, Text.of("CatMC"), button -> Log.info("Button Clicked.")));
-                    }
+
+                    /*if(screen instanceof TitleScreen){
+                        Screens.getButtons(screen).add(new ButtonWidget((int)Math.ceil(scaledWidth/10/2), (int)Math.ceil(scaledHeight/10/2), 50, 20, Text.of("CatMC"), button -> {
+                            Log.info("Button Clicked.");
+                            CLIENT.setScreenAndRender(new CatmcScreen(Text.of("CatMC - Menu"), screen, CLIENT.options));
+
+                        }));
+                    }*/
                     if(screen instanceof GameMenuScreen){
-                        Screens.getButtons(screen).add(new ButtonWidget(0, 0, 50, 20, Text.of("CatMC"), button -> Log.info("Button Clicked.")));
-                    }
-                    if(screen instanceof CatmcScreen){
-                        Screens.getButtons(screen).add(new ButtonWidget(0, 0, 50, 20, Text.of("Back"), button -> {
+                        Screens.getButtons(screen).add(new ButtonWidget((int)Math.ceil(scaledWidth/10/2), (int)Math.ceil(scaledHeight/10/2), 50, 20, Text.of("CatMC"), button -> {
+                            Log.info("Button Clicked.");
+                            CLIENT.setScreenAndRender(new CatmcScreen(Text.of("CatMC - Menu"), screen, CLIENT.options));
 
                         }));
                     }
 
+
                 });
     }
     public static void tick() {
+
     }
 }
